@@ -21,16 +21,20 @@ public class Calculatorjj extends JFrame {
 	}
 
 	void showNorth() {        //교재 641쪽 참고하여 코드 작성변경
-		JPanel panel = new JPanel();
+		JPanel p1 = new JPanel();
+        JPanel panel = new JPanel(new GridLayout(2, 0));
 
-		JTextArea area = new JTextArea(1, 15); //1줄15칸으로 만들기
-		area.setText("");
-		area.setEditable(false); //입력을 못하게 막는다
-		area.setForeground(Color.blue); //Foreground는 글자색
+        JLabel l1 = new JLabel();
+        JTextField t1 = new JTextField(10);
 
-		panel.add(area);
+        t1 = new JTextField(10);
+        t1.setEnabled(false);
 
-		add(panel, BorderLayout.NORTH); // 북쪽에다 붙여라
+        p1.add(t1);
+     
+        panel.add(p1);
+
+        add(panel, BorderLayout.NORTH); // 북쪽에다 붙여라
 	}
 
 	void showCenter() {       //교재 643쪽 참고하여 코드 작성변경
@@ -47,22 +51,22 @@ public class Calculatorjj extends JFrame {
 		JPanel panel = new JPanel(new GridLayout(4,4,10,10));
 		//4줄 4칸 수평수직 1픽셀 만들기
 		
-		panel.add(new JButton("1")); //교재 627쪽 참고 작성..
-		panel.add(new JButton("2"));
-		panel.add(new JButton("3"));
+		panel.add(new JButton("7")); //교재 627쪽 참고 작성..
+		panel.add(new JButton("8")); //키버튼 계산기형태로 숫자 변경
+		panel.add(new JButton("9"));
+		panel.add(new JButton("+"));
 		panel.add(new JButton("4"));
 		panel.add(new JButton("5"));
 		panel.add(new JButton("6"));
-		panel.add(new JButton("7"));
-		panel.add(new JButton("8"));
-		panel.add(new JButton("9"));
-		panel.add(new JButton("10"));
-		panel.add(new JButton("11"));
-		panel.add(new JButton("12"));
-		panel.add(new JButton("13"));
-		panel.add(new JButton("14"));
-		panel.add(new JButton("15"));
-		panel.add(new JButton("16"));
+		panel.add(new JButton("-"));
+		panel.add(new JButton("1"));
+		panel.add(new JButton("2"));
+		panel.add(new JButton("3"));
+		panel.add(new JButton("*"));
+		panel.add(new JButton("0"));
+		panel.add(new JButton("."));
+		panel.add(new JButton("="));
+		panel.add(new JButton("/"));
 		
 		add(panel, BorderLayout.SOUTH);
 
