@@ -21,6 +21,7 @@ public class Calculatorjj extends JFrame {
 	}
 
 	void showNorth() {        //교재 641쪽 참고하여 코드 작성변경
+		// area가 아닌 텍스트필드로 수정
 		JPanel p1 = new JPanel();
         JPanel panel = new JPanel(new GridLayout(2, 0));
 
@@ -53,7 +54,7 @@ public class Calculatorjj extends JFrame {
 		//4줄 4칸 수평수직 1픽셀 만들기
 		
 		panel.add(new JButton("7")); //교재 627쪽 참고 작성..
-		panel.add(new JButton("8"));
+		panel.add(new JButton("8")); //숫자버튼 계산기 숫자모양으로 변경
 		panel.add(new JButton("9"));
 		panel.add(new JButton("+"));
 		panel.add(new JButton("4"));
