@@ -4,41 +4,46 @@ import javax.swing.*;
 import java.awt.*;
 
 //기본 GUI 창을 생성하는 프로그램
-public class SuggestionJWT {
+public class SuggestionJWT extends JFrame {
+	SuggestionJWT() {
+		setTitle("청주대 건의함");
+		setLayout(new BorderLayout(10, 10)); //간격이 10만큼씩
+		showNorth();
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(500, 420);
+		setVisible(true); //보여줘라
+	}
 
-	
-	
- // GUI를 구성하는 메서드
-	// 교재 643 예제 15-14코드 참조 기본 틀 구성하였습니다.
-	
- public SuggestionJWT() {
-     // JFrame(프로그램 창) 생성
-     JFrame frame = new JFrame("청주대 건의함"); // 창 제목 설정
-     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // 창 닫기 설정
-     frame.setSize(400, 300); // 창 크기 설정
-     frame.setLayout(new BorderLayout()); // 레이아웃 설정
+	void showNorth() {
+		JPanel p1 = new JPanel();
+		JPanel p2 = new JPanel();
+		JPanel p3 = new JPanel();
 
-     // 상단에 입력 필드와 버튼 추가
-     JPanel inputPanel = new JPanel(new GridLayout(2, 2, 5, 5)); // 2행 2열 레이아웃
-     JLabel contentLabel = new JLabel("건의 내용:"); // 라벨
-     JTextField contentField = new JTextField(); // 텍스트 입력 필드
-     JButton addButton = new JButton("건의 추가"); // 버튼
+		JPanel panel = new JPanel(new GridLayout(3, 0)); //제일 먼저들어갈 레이블 3줄로 만들기
 
-     // 입력 필드와 버튼을 패널에 추가
-     inputPanel.add(contentLabel);
-     inputPanel.add(contentField);
-     inputPanel.add(new JLabel()); // 빈 공간 추가
-     inputPanel.add(addButton);
+		JLabel L1 = new JLabel("건의 내용:"); //레이블 생성
+		JLabel L2 = new JLabel("건의 장소:");
 
-     // 프레임에 패널 추가
-     frame.add(inputPanel, BorderLayout.NORTH); // 입력 패널을 창 상단에 배치
+		JTextField t1 = new JTextField(20); //텍스트 필드 생성 입력활수 있도록 설정
+		JTextField t2 = new JTextField(20);
+		
+		JButton b1 = new JButton("건의 추가"); // 건의를 추가하는 버튼
+        JButton b2 = new JButton("파일로 저장"); // 파일 저장 버튼
 
-     // 창을 보이도록 설정
-     frame.setVisible(true); // 창이 표시됨
- }
+		p1.add(L1); p1.add(t1);
+		p2.add(L2); p2.add(t2);
+		p3.add(b1); p3.add(b2);
+		
+		panel.add(p1); panel.add(p2); panel.add(p3);
+
+
+		//3개의 레이블과 3개의 텍스트 필드를 패널에 추가 한다
+
+		add(panel, BorderLayout.NORTH); // 북쪽에다 붙여라
+	}
 
  // 메인 메서드
  public static void main(String[] args) {
-     SwingUtilities.invokeLater(SuggestionJWT::new); // GUI 생성
+     new SuggestionJWT(); // GUI 생성
  }
 }
