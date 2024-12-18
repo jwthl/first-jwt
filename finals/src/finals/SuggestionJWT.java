@@ -4,22 +4,26 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
-import tt.Suggestion;
+
 
 //기본 GUI 창을 생성하는 프로그램
 // 교재 640쪽 예제 15-11참조
 public class SuggestionJWT extends JFrame {
-	private String content;
-	private String location;
+	private JTextArea textArea; // 건의 내용을 출력하기 위한 텍스트 영역
+    private ArrayList<SuggestionJWT> suggestions; // 입력된 건의를 저장하는 리스트
+    private String content;
+    private String location;
 
 
 
 
 
 	SuggestionJWT() {
+        suggestions = new ArrayList<>(); // 리스트 초기화
 		setTitle("청주대 건의함");
 		setLayout(new BorderLayout(10, 10)); //간격이 10만큼씩
 		showNorth(); 
@@ -48,9 +52,9 @@ public class SuggestionJWT extends JFrame {
 	// 교재 641쪽 예제 15-12참조
 	void showCenter() {
 			JPanel panel = new JPanel();
-			
 			JTextArea area = new JTextArea(13,40); // 12행 40열 텍스트영역 생성
 			area.setText("");
+			//panel.add(new JScrollPane(textArea)); // 스크롤이 가능한 텍스트 영역 추가
 			area.setEditable(false); // 텍스트영역에 입력할 수 없도 설정
 			
 			panel.add(area);
@@ -81,6 +85,7 @@ public class SuggestionJWT extends JFrame {
 		p3.add(b1); p3.add(b2);
 		
 		panel.add(p1); panel.add(p2); panel.add(p3);
+		
 
 
 		//3개의 레이블과 3개의 텍스트 필드를 패널에 추가 한다
@@ -93,23 +98,22 @@ public class SuggestionJWT extends JFrame {
         b1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // 입력 필드에서 내용 가져오기
-                String content = L1.getText(); //"건의내용" 가져오기
-                String location = L2.getText();//"건의장소" 가져오기
+            	 String content = t1.getText().trim(); // "건의 내용" 입력값 가져오기
+                 String location = t2.getText().trim(); // "건의 장소" 입력값 가져오기
 
                 // 입력값이 비어 있는지 확인
                 if (content.isEmpty() || location.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "건의 내용과 장소를 모두 입력하세요!", "오류", JOptionPane.ERROR_MESSAGE);
                     return; // 건의를 추가하지 않고 종료
                 }SuggestionJWT suggestion = new SuggestionJWT(content, location); // 새로운 건의 생성
-                //suggestions.add(suggestion); // 리스트에 추가
-                //listModel.addElement(suggestion.toString()); // 화면에 표시
+                
 
                 // 입력 필드 초기화
                 t1.setText("");
                 t2.setText("");
 
                 // 성공 메시지 표시
-                JOptionPane.showMessageDialog(null, "건의가 추가되었습니다!", "성공", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showInputDialog(null, "건의가 추가되었습니다!", "성공", JOptionPane.INFORMATION_MESSAGE);
             
         }
         });
