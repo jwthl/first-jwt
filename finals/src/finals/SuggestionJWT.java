@@ -127,8 +127,5 @@ public class SuggestionJWT extends JFrame {
  public static void main(String[] args) {
      new SuggestionJWT(); // GUI 생성
      
-     
-     
-
 	}
 }
