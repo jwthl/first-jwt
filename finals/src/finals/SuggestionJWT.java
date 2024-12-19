@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
+import tt.Suggestion;
+
 
 
 //기본 GUI 창을 생성하는 프로그램
@@ -17,10 +19,6 @@ public class SuggestionJWT extends JFrame {
     private ArrayList<SuggestionJWT> suggestions; // 입력된 건의를 저장하는 리스트
     private String content;
     private String location;
-
-
-
-
 
 	SuggestionJWT() {
         suggestions = new ArrayList<>(); // 리스트 초기화
@@ -52,12 +50,10 @@ public class SuggestionJWT extends JFrame {
 	// 교재 641쪽 예제 15-12참조
 	void showCenter() {
 			JPanel panel = new JPanel();
-			JTextArea area = new JTextArea(13,40); // 12행 40열 텍스트영역 생성
-			area.setText("");
-			//panel.add(new JScrollPane(textArea)); // 스크롤이 가능한 텍스트 영역 추가
-			area.setEditable(false); // 텍스트영역에 입력할 수 없도 설정
+			textArea = new JTextArea(13,40); // 12행 40열 텍스트영역 생성
+			panel.add(new JScrollPane(textArea)); // 스크롤이 가능한 텍스트 영역 추가
+		    textArea.setEditable(false); // 편집 불가능하게 설정
 			
-			panel.add(area);
 			
 			add(panel, BorderLayout.CENTER);
 			
@@ -108,6 +104,13 @@ public class SuggestionJWT extends JFrame {
                 }SuggestionJWT suggestion = new SuggestionJWT(content, location); // 새로운 건의 생성
                 
 
+                
+             // 건의 객체 생성 및 추가
+                //Suggestion suggestion = new Suggestion(content, location); // 새로운 건의 생성
+                suggestions.add(suggestion); // 리스트에 추가
+                listModel.addElement(suggestion.toString()); // 화면에 표시
+                
+                
                 // 입력 필드 초기화
                 t1.setText("");
                 t2.setText("");
