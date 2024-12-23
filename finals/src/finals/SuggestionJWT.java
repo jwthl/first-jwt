@@ -103,7 +103,7 @@ public class SuggestionJWT extends JFrame {
             }
 
             @Override
-            public void keyPressed(KeyEvent e) {
+            public void keyPressed(KeyEvent e) {  // 교재 672쪽 예제 16-4 참조!
                 // 특정 키 입력에 따라 동작 추가 가능
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     JOptionPane.showMessageDialog(null, "엔터 키가 눌렸습니다!", "알림", JOptionPane.INFORMATION_MESSAGE);
@@ -165,9 +165,7 @@ public class SuggestionJWT extends JFrame {
                 String fileName = "suggestions.csv"; // 고정된 파일 이름으로 저장하게한다
 
                 try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
-                	// BufferedWriter와 FileWriter를 사용해 파일 쓰기 
-                	//교재  542쪽 참조
-
+         
         
         
 	}
