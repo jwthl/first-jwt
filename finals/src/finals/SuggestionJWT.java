@@ -6,6 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -118,8 +121,11 @@ public class SuggestionJWT extends JFrame {
 		
 		
 		// 건의 추가 버튼 동작 설정
+        
+        
+        //챗GPT 검색병행 처리하였습니다 ㅜㅜ
 		//교재 672쪽 예제 16-4 참조
-        b1.addActionListener(new ActionListener() {
+        b1.addActionListener(new ActionListener() {    // b1 건의 추가 버튼에 대한 이벤트처리..?
 
 			public void actionPerformed(ActionEvent e) {
                 // 입력 필드에서 내용 가져오기
@@ -150,12 +156,22 @@ public class SuggestionJWT extends JFrame {
             
         }
         });
-	}
-
-  
         
-	
+        //챗GPT 검색병행 처리하였습니다 ㅜㅜ
+        //교재 541쪽~545쪽을 같이 참고하였다.
+        b2.addActionListener(new ActionListener() { //"b2" 버튼 액션리스너
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String fileName = "suggestions.csv"; // 고정된 파일 이름으로 저장하게한다
 
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+                	// BufferedWriter와 FileWriter를 사용해 파일 쓰기 
+                	//교재  542쪽 참조
+
+        
+        
+	}
+	
  // 메인 메서드
  public static void main(String[] args) {
      new SuggestionJWT(); // GUI 생성
