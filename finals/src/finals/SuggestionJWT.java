@@ -4,11 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import javax.swing.*;
 
-import tt.Suggestion;
 
 
 
@@ -35,6 +36,7 @@ public class SuggestionJWT extends JFrame {
         this.content = content;
         this.location = location;
     }
+	
 
     // 건의 내용을 출력하기 위해 문자열 형식으로 반환
     @Override
@@ -50,7 +52,7 @@ public class SuggestionJWT extends JFrame {
 	// 교재 641쪽 예제 15-12참조
 	void showCenter() {
 			JPanel panel = new JPanel();
-			textArea = new JTextArea(13,40); // 12행 40열 텍스트영역 생성
+			textArea = new JTextArea(13,40); // 13행 40열 텍스트영역 생성
 			panel.add(new JScrollPane(textArea)); // 스크롤이 가능한 텍스트 영역 추가
 		    textArea.setEditable(false); // 편집 불가능하게 설정
 			
@@ -89,10 +91,37 @@ public class SuggestionJWT extends JFrame {
 		add(panel, BorderLayout.NORTH); // 북쪽에다 붙여라
 		
 		
+		// 교재 667~672쪽 KeyListener 참조해본다
+		 // KeyListener 추가
+        KeyListener keyListener = new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                // 키 입력이 완료될 때 발생
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                // 특정 키 입력에 따라 동작 추가 가능
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    JOptionPane.showMessageDialog(null, "엔터 키가 눌렸습니다!", "알림", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                // 키 떼는 이벤트 처리
+            }
+        };
+
+        t1.addKeyListener(keyListener);
+        t2.addKeyListener(keyListener);
+		
+		
 		// 건의 추가 버튼 동작 설정
 		//교재 672쪽 예제 16-4 참조
         b1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+
+			public void actionPerformed(ActionEvent e) {
                 // 입력 필드에서 내용 가져오기
             	 String content = t1.getText().trim(); // "건의 내용" 입력값 가져오기
                  String location = t2.getText().trim(); // "건의 장소" 입력값 가져오기
@@ -101,14 +130,15 @@ public class SuggestionJWT extends JFrame {
                 if (content.isEmpty() || location.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "건의 내용과 장소를 모두 입력하세요!", "오류", JOptionPane.ERROR_MESSAGE);
                     return; // 건의를 추가하지 않고 종료
-                }SuggestionJWT suggestion = new SuggestionJWT(content, location); // 새로운 건의 생성
+                }
                 
 
                 
              // 건의 객체 생성 및 추가
-                //Suggestion suggestion = new Suggestion(content, location); // 새로운 건의 생성
-                suggestions.add(suggestion); // 리스트에 추가
-                listModel.addElement(suggestion.toString()); // 화면에 표시
+                SuggestionJWT suggestion1 = new SuggestionJWT(content, location); // 새로운 건의 생성
+                suggestions.add(suggestion1); // 리스트에 추가
+                textArea.append(suggestion1.toString() + "\n"); // 텍스트 영역에 추가
+
                 
                 
                 // 입력 필드 초기화
