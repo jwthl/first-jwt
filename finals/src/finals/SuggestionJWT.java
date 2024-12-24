@@ -103,7 +103,7 @@ public class SuggestionJWT extends JFrame {
             }
 
             @Override
-            public void keyPressed(KeyEvent e) {  // 교재 672쪽 예제 16-4 참조!
+            public void keyPressed(KeyEvent e) { // 교재 672쪽 예제 16-4 참조!
                 // 특정 키 입력에 따라 동작 추가 가능
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     JOptionPane.showMessageDialog(null, "엔터 키가 눌렸습니다!", "알림", JOptionPane.INFORMATION_MESSAGE);
@@ -165,7 +165,18 @@ public class SuggestionJWT extends JFrame {
                 String fileName = "suggestions.csv"; // 고정된 파일 이름으로 저장하게한다
 
                 try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
-         
+                	// BufferedWriter와 FileWriter를 사용해 파일 쓰기 
+                	//교재  542쪽 참조
+                    for (SuggestionJWT suggestion : suggestions) {
+                        writer.write(suggestion.toCsvString());
+                        writer.newLine(); //작성 후 줄바꿈 추가
+                    }
+                    JOptionPane.showMessageDialog(null, "파일이 성공적으로 저장되었습니다!\n파일 이름: " + fileName, "성공", JOptionPane.INFORMATION_MESSAGE);
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(null, "파일 저장 중 오류가 발생했습니다.", "오류", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
         
         
 	}
@@ -176,3 +187,9 @@ public class SuggestionJWT extends JFrame {
      
 	}
 }
+
+
+
+
+// 교재 책의 예제코드와 챗GPT코드 검색 활용하여 작성하였지만...그래도 어려웠습니다ㅜㅜㅜㅜ
+// 짧은 학기 시간동안 쉽게 많은 지도 해주셔서 감사합니다.
